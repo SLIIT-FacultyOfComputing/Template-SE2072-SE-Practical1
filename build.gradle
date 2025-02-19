@@ -1,0 +1,26 @@
+plugins {
+    id 'java'
+    id 'application' // if you need "gradlew run"
+}
+
+group 'com.example'
+version '1.0-SNAPSHOT'
+
+// If Gradle doesn't officially recognize "23", you can still set it numerically:
+sourceCompatibility = JavaVersion.VERSION_17 // or "VERSION_21" if 23 is not recognized
+// If you want to try 23 preview features, you might need a different approach.
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.9.2'
+}
+
+test {
+    useJUnitPlatform()
+}
+application {
+    mainClass = 'com.example.Main'
+}
