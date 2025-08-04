@@ -1,26 +1,44 @@
 plugins {
     id 'java'
-    id 'application' // if you need "gradlew run"
+    id 'application'
 }
 
-group 'com.example'
-version '1.0-SNAPSHOT'
+group = 'com.example'
+version = '1.0-SNAPSHOT'
 
-// If Gradle doesn't officially recognize "23", you can still set it numerically:
-sourceCompatibility = JavaVersion.VERSION_17 // or "VERSION_21" if 23 is not recognized
-// If you want to try 23 preview features, you might need a different approach.
+// Instead of using 'sourceCompatibility',
+// use the Gradle toolchain to specify Java 17
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
 
 repositories {
     mavenCentral()
 }
-
+sourceSets {
+    main {
+        java {
+            srcDirs = ['Inclass/main']
+        }
+    }
+    test {
+        java {
+            srcDirs = ['Inclass/test']
+        }
+    }
+}
 dependencies {
+    // JUnit 5 for testing
     testImplementation 'org.junit.jupiter:junit-jupiter:5.9.2'
 }
 
 test {
     useJUnitPlatform()
 }
+
 application {
-    mainClass = 'com.example.Main'
+    // Update this to the full path of your Main class
+    mainClass = 'com.example.ooppractice.Main'
 }
